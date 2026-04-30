@@ -1,8 +1,8 @@
-# Claude Code Skills
+# AI Coding Skills
 
 [English](./README.md) | 简体中文
 
-适用于 Claude Code 及其他 AI 编程助手的可复用 skills 集合。
+适用于 AI 编程助手的可复用 skills 集合。
 
 ## Skills
 
@@ -22,6 +22,6 @@ npx skills add https://github.com/inscripoem/skills --skill init-opensource
 - 生成 `CONTRIBUTING.md`（含目录的完整贡献指南）
 - 生成 GitHub Issue / PR 模板（Bug 报告、功能建议、配置、PR 模板）
 - 生成 `README.md`（含徽章、安装说明、快速开始和交叉引用）
-- 多语言支持（英文 + 中文）所有文档
+- 多语言支持（英文 + 中文 + 自定义语言），Issue/PR 模板语言可独立选择
 
-每一步均可选择跳过，并会在操作前征得确认。所有模板均来自权威开源项目。
+用户可在开始时选择要执行的步骤和需要的语言，所有模板均来自权威开源项目。

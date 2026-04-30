@@ -3,10 +3,10 @@
   "evals": [
     {
       "id": 1,
-      "name": "nodejs-complete-init",
-      "prompt": "I have a Node.js caching library project at /tmp/init-opensource-workspace/iteration-1/nodejs-demo. I want to prepare it for open-source publication. Please help me initialize all necessary files: git + gitignore, LICENSE (MIT), CODE_OF_CONDUCT, CONTRIBUTING guide, issue/PR templates, and a README with badges. Also ask me about multi-language support. When asking about each step, I'll confirm yes to all steps. For badges, I want npm version, npm downloads, and license badges. For the GitHub repo, assume owner is 'alicedev' and repo is 'fast-cache'.",
-      "expected_output": "All open-source files generated: .gitignore, LICENSE, CODE_OF_CONDUCT.md, CONTRIBUTING.md, .github/ISSUE_TEMPLATE/*, .github/PULL_REQUEST_TEMPLATE.md, README.md with badges and cross-references",
-      "files": ["/tmp/init-opensource-workspace/iteration-1/nodejs-demo"],
+      "name": "selective-steps-only-readme-license",
+      "prompt": "You are testing the init-opensource skill. Read the SKILL.md at /home/inscripoem/dev/skills/init-opensource/SKILL.md and follow its instructions exactly.\n\nThe project is at /tmp/init-opensource-workspace/iteration-1/eval-selective. It has a package.json.\n\nSimulate a user who wants to initialize only LICENSE (MIT) and README.md. When the skill presents the multi-select for initialization steps, respond as if the user selected ONLY 'LICENSE' and 'README.md'. When asked about language, respond as if the user chose 'No, English only'. For README badges, include npm version and license badges. Assume GitHub owner 'testuser' and repo 'selective-demo'.\n\nSince this is an automated test and you cannot use AskUserQuestion, make the selections directly in your reasoning and proceed. Generate the selected files. Save all outputs to /tmp/init-opensource-workspace/iteration-1/eval-selective/.",
+      "expected_output": "Only LICENSE and README.md are generated. No CODE_OF_CONDUCT.md, no CONTRIBUTING.md, no .github/ directory, no .gitignore.",
+      "files": ["/tmp/init-opensource-workspace/iteration-1/eval-selective"],
       "assertions": [
         {
           "name": "license_exists_and_is_mit",
@@ -15,98 +15,106 @@
           "expected": "MIT License"
         },
         {
-          "name": "coc_exists",
+          "name": "readme_exists",
           "check": "file_exists",
+          "file": "README.md"
+        },
+        {
+          "name": "coc_should_not_exist",
+          "check": "file_not_exists",
           "file": "CODE_OF_CONDUCT.md"
         },
         {
-          "name": "contributing_exists",
-          "check": "file_exists",
+          "name": "contributing_should_not_exist",
+          "check": "file_not_exists",
           "file": "CONTRIBUTING.md"
         },
         {
-          "name": "readme_has_badges",
-          "check": "file_contains",
-          "file": "README.md",
-          "expected": "shields.io"
-        },
-        {
-          "name": "readme_links_contributing",
-          "check": "file_contains",
-          "file": "README.md",
-          "expected": "CONTRIBUTING.md"
-        },
-        {
-          "name": "readme_links_license",
-          "check": "file_contains",
-          "file": "README.md",
-          "expected": "LICENSE"
-        },
-        {
-          "name": "issue_templates_exist",
-          "check": "file_exists",
+          "name": "github_dir_should_not_exist",
+          "check": "file_not_exists",
           "file": ".github/ISSUE_TEMPLATE/bug_report.md"
         },
         {
-          "name": "pr_template_exists",
-          "check": "file_exists",
-          "file": ".github/PULL_REQUEST_TEMPLATE.md"
-        },
-        {
-          "name": "gitignore_has_node",
-          "check": "file_contains",
-          "file": ".gitignore",
-          "expected": "node_modules"
-        },
-        {
-          "name": "contributing_has_toc",
-          "check": "file_contains",
-          "file": "CONTRIBUTING.md",
-          "expected": "Table of Contents"
+          "name": "gitignore_should_not_exist",
+          "check": "file_not_exists",
+          "file": ".gitignore"
         }
       ]
     },
     {
       "id": 2,
-      "name": "python-partial-init",
-      "prompt": "I have a Python data validation library at /tmp/init-opensource-workspace/iteration-1/python-demo. It already has a basic README.md that just says '# Data Validator' and a short description. I want to publish it as open-source. Please check what's missing and help me set up the remaining files. I'll confirm yes to LICENSE (Apache-2.0), CODE_OF_CONDUCT, CONTRIBUTING, and issue templates. Skip git initialization since it's already a git repo. For badges, I want PyPI version and license badges. Assume owner 'bobcoder' and repo 'data-validator'.",
-      "expected_output": "Existing README preserved and enhanced. New files generated: LICENSE (Apache-2.0), CODE_OF_CONDUCT.md, CONTRIBUTING.md, .github/ISSUE_TEMPLATE/*, .github/PULL_REQUEST_TEMPLATE.md",
-      "files": ["/tmp/init-opensource-workspace/iteration-1/python-demo"],
+      "name": "full-init-chinese-issue-pr-english",
+      "prompt": "You are testing the init-opensource skill. Read the SKILL.md at /home/inscripoem/dev/skills/init-opensource/SKILL.md and follow its instructions exactly.\n\nThe project is at /tmp/init-opensource-workspace/iteration-1/eval-chinese. It has a pyproject.toml.\n\nSimulate a user who wants to fully initialize for open source. When the skill presents the multi-select for initialization steps, respond as if the user selected ALL options. When asked about language, respond as if the user chose 'Simplified Chinese (简体中文)'. When asked about Issue/PR template language, respond as if the user chose 'Keep Issue/PR templates in English'. For LICENSE, choose MIT. For badges, include PyPI version and license. Assume GitHub owner 'testuser' and repo 'chinese-demo'.\n\nSince this is an automated test and you cannot use AskUserQuestion, make the selections directly in your reasoning and proceed. Generate all selected files including Chinese translations (e.g., README.zh.md, CODE_OF_CONDUCT.zh.md, etc.). Save all outputs to /tmp/init-opensource-workspace/iteration-1/eval-chinese/.",
+      "expected_output": "All files generated in English + Chinese versions. Issue/PR templates remain in English only. Chinese versions have language switchers.",
+      "files": ["/tmp/init-opensource-workspace/iteration-1/eval-chinese"],
       "assertions": [
         {
-          "name": "license_is_apache",
-          "check": "file_contains",
-          "file": "LICENSE",
-          "expected": "Apache License"
+          "name": "license_exists",
+          "check": "file_exists",
+          "file": "LICENSE"
         },
         {
-          "name": "readme_enhanced_not_overwritten",
+          "name": "coc_chinese_exists",
+          "check": "file_exists",
+          "file": "CODE_OF_CONDUCT.zh.md"
+        },
+        {
+          "name": "readme_chinese_exists",
+          "check": "file_exists",
+          "file": "README.zh.md"
+        },
+        {
+          "name": "issue_template_is_english",
+          "check": "file_contains",
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "expected": "Bug Report"
+        },
+        {
+          "name": "language_switcher_in_readme",
           "check": "file_contains",
           "file": "README.md",
-          "expected": "Data Validator"
-        },
-        {
-          "name": "contributing_has_legal_notice",
-          "check": "file_contains",
-          "file": "CONTRIBUTING.md",
-          "expected": "Legal Notice"
+          "expected": "README.zh.md"
         },
         {
           "name": "gitignore_has_python",
           "check": "file_contains",
           "file": ".gitignore",
           "expected": "__pycache__"
-        },
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "custom-language-japanese",
+      "prompt": "You are testing the init-opensource skill. Read the SKILL.md at /home/inscripoem/dev/skills/init-opensource/SKILL.md and follow its instructions exactly.\n\nThe project is at /tmp/init-opensource-workspace/iteration-1/eval-custom-lang. It has a Cargo.toml.\n\nSimulate a user who wants to fully initialize for open source. When the skill presents the multi-select for initialization steps, respond as if the user selected ALL options. When asked about language, respond as if the user chose 'Other language (please specify)' and specified Japanese. When asked about Issue/PR template language, respond as if the user chose to use Japanese. For LICENSE, choose MIT. For badges, include crates.io and license. Assume GitHub owner 'testuser' and repo 'custom-lang-demo'.\n\nSince this is an automated test and you cannot use AskUserQuestion, make the selections directly in your reasoning and proceed. Generate all selected files including Japanese translations (translated from English templates). Save all outputs to /tmp/init-opensource-workspace/iteration-1/eval-custom-lang/.",
+      "expected_output": "All files generated in English + Japanese versions. Japanese versions created by translating English templates. Issue/PR templates also in Japanese.",
+      "files": ["/tmp/init-opensource-workspace/iteration-1/eval-custom-lang"],
+      "assertions": [
         {
-          "name": "readme_has_pypi_badge",
-          "check": "file_contains",
-          "file": "README.md",
-          "expected": "pypi"
-        },
-        {
-          "name": "coc_exists",
+          "name": "license_exists",
           "check": "file_exists",
-          "file": "CODE_OF_CONDUCT.md"
+          "file": "LICENSE"
+        },
+        {
+          "name": "readme_japanese_exists",
+          "check": "file_exists",
+          "file": "README.ja.md"
+        },
+        {
+          "name": "issue_template_japanese",
+          "check": "file_exists",
+          "file": ".github/ISSUE_TEMPLATE/bug_report.md"
+        },
+        {
+          "name": "gitignore_has_rust",
+          "check": "file_contains",
+          "file": ".gitignore",
+          "expected": "target/"
+        },
+        {
+          "name": "contributing_exists",
+          "check": "file_exists",
+          "file": "CONTRIBUTING.md"
         }
       ]
     }

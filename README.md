@@ -1,8 +1,8 @@
-# Claude Code Skills
+# AI Coding Skills
 
 English | [简体中文](./README.zh.md)
 
-A collection of reusable skills for Claude Code and other AI coding agents.
+A collection of reusable skills for AI coding agents.
 
 ## Skills
 
@@ -22,6 +22,6 @@ Transforms a personal project into a publishable open-source repository by autom
 - Generate `CONTRIBUTING.md` (comprehensive guide with table of contents)
 - Generate GitHub Issue / PR templates (bug report, feature request, config, PR template)
 - Generate `README.md` with badges, installation, quick start, and cross-references
-- Multi-language support (English + Chinese) for all documents
+- Multi-language support (English + Chinese + custom languages) with independent Issue/PR template language choice
 
-Every step is optional and gated by user confirmation. Templates are bundled and sourced from authoritative open-source projects.
+The user selects which steps to run and which languages to support upfront. Templates are bundled and sourced from authoritative open-source projects.
