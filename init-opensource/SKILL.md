@@ -376,16 +376,32 @@ For each document that has a language variant in `templates/`:
 2. Save as `{filename}.{lang}.md` (e.g., `README.zh.md`)
 3. Add language switcher links at the top of BOTH versions
 
+**Generated file names:**
+
+| English | Chinese |
+|---|---|
+| `README.md` | `README.zh.md` |
+| `CODE_OF_CONDUCT.md` | `CODE_OF_CONDUCT.zh.md` |
+| `CONTRIBUTING.md` | `CONTRIBUTING.zh.md` |
+
 **Language switcher format** (at the very top of the file, after any banner):
 ```markdown
 <p align="center">
   <a href="./README.md">English</a>
   ·
   <a href="./README.zh.md">简体中文</a>
-  ·
-  <a href="./README.ja.md">日本語</a>
 </p>
 ```
+
+Add the same switcher to `CODE_OF_CONDUCT.md` / `CODE_OF_CONDUCT.zh.md` and `CONTRIBUTING.md` / `CONTRIBUTING.zh.md`.
+
+**Cross-language links:**
+When generating non-English versions, ensure internal links point to the corresponding language version of related documents:
+
+- `README.zh.md` → `CONTRIBUTING.zh.md`, `CODE_OF_CONDUCT.zh.md`
+- `README.md` → `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`
+
+The bundled templates already contain the correct relative links. When translating from English templates, preserve the link targets — the `.zh.md` suffix will naturally match the Chinese filename.
 
 **Supported language mappings from templates:**
 - `zh` → 简体中文
